@@ -61,6 +61,29 @@ Text from the dotnet test output as well as debug info is written to the Output/
 
 ![showlog](images/showlog.png)
 
+## Troubleshooting
+
+### NUnit 
+
+By default NUnitTestAdapter only prints method names as "DisplayName". For test case discovery full qualified names are required. Therefore create a "nunit.runsettings" file with following content:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <NUnit>
+    <DisplayName>FullName</DisplayName>
+  </NUnit>
+</RunSettings>
+``` 
+
+and pass this as testArguments from settings
+
+```json
+{
+    "dotnet-test-explorer.testArguments": "--settings .runsettings"
+}
+``` 
+
 ## Debugging (alpha)
 
 To debug a test, right click the test and choose to Debug test. The option to run and debug test that appear in the code lens are provided by the omnisharp plugin and has nothing to do with this extension.
